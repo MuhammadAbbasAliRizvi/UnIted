@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jirga Flavors Restaurant - Light Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* =========================================
+           THEME: FRESH CITRUS (LIGHT MODE)
+           ========================================= */
+        :root {
+            --primary-color: #FF4500; /* Bright Orange */
+            --secondary-color: #FFC107; /* Golden Yellow */
+            --bg-color: #FFF8F0;    /* Creamy White Background */
+            --card-bg: #FFFFFF;     /* Pure White Card */
+            --heading-color: #222222;
+            --text-color: #555555;
+            --gray-color: #888888;
+            --section-padding: 80px 0;
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft Shadow */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Menu Section Styles */
+        .menu-section {
+            padding: var(--section-padding);
+            background-color: var(--bg-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--heading-color);
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: var(--text-color);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .section-header span {
+            color: var(--primary-color);
+        }
+
+        /* Menu Tabs */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .menu-tab {
+            padding: 12px 30px;
+            background: #FFF;
+            border: 2px solid var(--primary-color);
+            color: var(--heading-color);
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .menu-tab.active,
+        .menu-tab:hover {
+            background-color: var(--primary-color);
+            color: #FFF;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 69, 0, 0.3);
+        }
+
+        /* Menu Categories */
+        .menu-category {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .menu-category.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-title {
+            text-align: left;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 20px;
+        }
+
+        .category-title h3 {
+            font-size: 2rem;
+            color: var(--heading-color);
+            margin: 0;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* Menu Item Card - LIGHT THEME ADJUSTMENTS */
+        .menu-item {
+            background: var(--card-bg); /* White */
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 69, 0, 0.15); /* Orange Glow */
+            border-color: var(--primary-color);
+        }
+
+        .item-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover .item-image img {
+            transform: scale(1.1);
+        }
+
+        /* Price Tag Overlay */
+        .item-overlay {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 2;
+        }
+
+        .item-price {
+            background: linear-gradient(45deg, #FF4500, #FF9100);
+            color: #FFF;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .item-info {
+            padding: 25px;
+        }
+
+        .item-info h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+
+        .item-info p {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .item-tag {
+            background-color: #FFF3E0; /* Very light orange */
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--primary-color);
+        }
+
+        /* Special Badges */
+        .special-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--secondary-color); /* Yellow */
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            z-index: 2;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 2.2rem; }
+            .menu-tab { width: 45%; text-align: center; padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Jirga <span>Flavors</span></h2>
+                <p>Authentic Pakistani Taste with a Modern Twist. Fresh Ingredients, Bold Spices, and Rainbow Variety.</p>
+            </div>
+            
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-category="bbq">🔥 BBQ Grill</button>
+                <button class="menu-tab" data-category="karahi">🥘 Desi Karahi</button>
+                <button class="menu-tab" data-category="rice">🍚 Rice / Biryani</button>
+                <button class="menu-tab" data-category="fastfood">🍔 Fast Food</button>
+                <button class="menu-tab" data-category="beverages">🍹 Beverages</button>
+            </div>
+            
+            <div class="menu-category active" id="bbq">
+                <div class="category-title">
+                    <h3>Charcoal BBQ Specialties</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Seekh Kebabs">
+                            <div class="item-overlay"><div class="item-price">Rs. 850</div></div>
+                            <div class="special-badge">Top Seller</div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Beef Seekh Kabab</h4>
+                            <p>Juicy minced beef marinated with green chilies, coriander and special spices, grilled on charcoal.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Spicy</span>
+                                <span class="item-tag">Traditional</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Malai Boti">
+                            <div class="item-overlay"><div class="item-price">Rs. 1,150</div></div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Chicken Malai Boti</h4>
+                            <p>Boneless chicken cubes marinated in fresh cream, yogurt and mild white pepper. Melts in mouth.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Creamy</span>
+                                <span class="item-tag">Mild</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Mutton Chops">
+                            <div class="item-overlay"><div class="item-price">Rs. 2,400</div></div>
+                            <div class="special-badge">Premium</div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Mutton Ribs / Chops</h4>
+                            <p>Tender mutton ribs marinated in papaya and spices, slow-grilled to perfection.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Namkeen</span>
+                                <span class="item-tag">Special</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" id="karahi">
+                <div class="category-title">
+                    <h3>Traditional Handi & Karahi</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Chicken Karahi">
+                            <div class="item-overlay"><div class="item-price">Rs. 1,600</div></div>
+                            <div class="special-badge">Full / Half</div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Chicken Peshawari Karahi</h4>
+                            <p>Made in pure tomato base with black pepper and green chilies. No onions used.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Peshawari</span>
+                                <span class="item-tag">Desi Ghee</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Makhni Handi">
+                            <div class="item-overlay"><div class="item-price">Rs. 1,850</div></div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Chicken Makhni Handi</h4>
+                            <p>Boneless chicken cooked in butter, cream, and almond paste. A royal white gravy.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Sweet & Savory</span>
+                                <span class="item-tag">Rich</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category" id="rice">
+                <div class="category-title">
+                    <h3>Rice & Biryani</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1630918328733-3962d316b19d?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Biryani">
+                            <div class="item-overlay"><div class="item-price">Rs. 650</div></div>
+                            <div class="special-badge">Signature</div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Special Bombay Biryani</h4>
+                            <p>Aromatic Basmati rice layered with spicy chicken masala and potatoes (Aloo).</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Spicy</span>
+                                <span class="item-tag">Sindhi Style</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Kabuli Pulao">
+                            <div class="item-overlay"><div class="item-price">Rs. 900</div></div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Kabuli Pulao (Beef)</h4>
+                            <p>Traditional Afghani rice with sweet carrots, raisins, and large beef chunks.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Mild</span>
+                                <span class="item-tag">Sweet</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="menu-category" id="fastfood">
+                <div class="category-title">
+                    <h3>Burgers & Rolls</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Zinger">
+                            <div class="item-overlay"><div class="item-price">Rs. 750</div></div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Crunchy Zinger Burger</h4>
+                            <p>Double breaded crispy chicken fillet with spicy mayo and iceberg lettuce.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Crispy</span>
+                                <span class="item-tag">Cheese Add-on</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Boti Roll">
+                            <div class="item-overlay"><div class="item-price">Rs. 450</div></div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Malai Boti Roll</h4>
+                            <p>Creamy chicken boti wrapped in a crispy fried paratha with chutney and onions.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Oily & Tasty</span>
+                                <span class="item-tag">Street Style</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category" id="beverages">
+                <div class="category-title">
+                    <h3>Drinks & Refreshments</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Mint Margarita">
+                            <div class="item-overlay"><div class="item-price">Rs. 350</div></div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Mint Margarita</h4>
+                            <p>Fresh mint leaves blended with lemon, ice, and soda. The perfect heat beater.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Chilled</span>
+                                <span class="item-tag">Refreshing</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&w=500&h=350&fit=crop" alt="Lassi">
+                            <div class="item-overlay"><div class="item-price">Rs. 300</div></div>
+                        </div>
+                        <div class="item-info">
+                            <h4>Special Dhaba Lassi</h4>
+                            <p>Thick yogurt drink, available in Sweet (Meethi) or Salty (Namkeen) flavor.</p>
+                            <div class="item-tags">
+                                <span class="item-tag">Traditional</span>
+                                <span class="item-tag">Heavy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            const menuTabs = document.querySelectorAll('.menu-tab');
+            const menuCategories = document.querySelectorAll('.menu-category');
+            
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and categories
+                    menuTabs.forEach(t => t.classList.remove('active'));
+                    menuCategories.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding category
+                    const categoryId = this.getAttribute('data-category');
+                    document.getElementById(categoryId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

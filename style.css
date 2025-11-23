@@ -1,98 +1,712 @@
+/* =========================================
+   THEME: FRESH CITRUS / SUNRISE GRILL (LIGHT MODE)
+   Colors: Bright Orange, Warm White, Dark Grey Text
+   ========================================= */
 
-body{
-    background-color: aliceblue;
-    margin: 0%;
-    padding: 0%;
-}
-.main{
-    display: flex;
-    height: auto;
-    width: 100%;
-    justify-content: space-between;
-    margin-top:1%;
-}
-.nav{
-    /* background-color: aqua; */
-    display: flex;
-    list-style: none;
-    justify-content: center;
-    gap: 15px;
-    font-size: 1.5em;
-}
-.searchbar{
-    display: flex;
-    background-color: rgba(212, 212, 199, 0.288);
-    align-self: center;
-    justify-content: space-between;
-    border-radius: 20px;
-    width: 650px;
-}
-.searchimg{
-    height: 20px;
-}
-.emailtext{
-    align-self: center; 
-    display: flex;
-}
-.mailsearch{
-    align-self: center;  
-    color: rgb(125, 131, 136);
-    font-size: large;
-}
-.navleft{
-    margin-right: 2px;
-    margin-left: 150px;
-    /* width:100% ; */
-    align-content: center;
-    justify-content:space-evenly;
+:root {
+    /* PRIMARY: Vibrant Orange */
+    --primary-color: #FF4500; 
+    
+    /* SECONDARY: Golden Yellow */
+    --secondary-color: #FFC107; 
+    
+    /* GRADIENT: Fire look for buttons */
+    --fire-gradient: linear-gradient(45deg, #e0521ee0, #ff9100d8);
+    
+    /* BACKGROUNDS (Light Theme Changes) */
+    --bg-color: #FFF8F0;    /* Very light warm cream (Not harsh white) */
+    --card-bg: #FFFFFF;     /* Pure white for cards */
+    --section-bg: #FFF0E0;  /* Light Orange Tint for alternate sections */
+    
+    /* TEXT COLORS (Dark for readability on light bg) */
+    --heading-color: #222222;
+    --text-color: #555555;
+    --light-text: #FFFFFF; /* For text over images or buttons */
+    
+    /* SPACING & SHAPES */
+    --section-padding: 80px 0;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft shadow for light theme */
 }
 
-.main2{
-    display: flex;
-    width: 100%;
-    justify-content: center;
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.compose{
-    background-color: rgb(151, 181, 189);
-    height: 70px;
-    width: 140px;
-    border-radius: 20px;
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color); /* LIGHT BACKGROUND */
+    color: var(--text-color);          /* DARK TEXT */
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--heading-color); /* Dark Headings */
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
+p { margin-bottom: 1rem; }
+
+/* Header Styles (Light Glass Effect) */
+.header {
+    background-color: rgba(255, 255, 255, 0.95); /* White transparent */
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    display: flex;
+    padding: 15px 0;
 }
-.mails{
-    height: 999px;
-    width:1100px ;
-    /* justify-content: center; */
-    align-self:flex-start;
-    background-color: rgb(216, 216, 224);
-    border-radius: 20px;
-    margin:0px 130px;
-    overflow-y: scroll;
+
+.logo img {
+    height: 80px;
+    transition: var(--transition);
 }
-.mnav{
-    background-color: rgb(216, 216, 224);
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.main-nav .nav-list {
     display: flex;
     list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a {
+    color: var(--heading-color); /* Dark Links */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    position: relative;
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+    border-radius: 2px;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* BUTTONS (Keep Fire Gradient for Pop) */
+.btn {
+    background: var(--fire-gradient);
+    color: #FFF;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.25);
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #FF9100, #FF4500);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.4);
+}
+
+.franchise-btn {
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: var(--transition);
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.franchise-btn:hover {
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
+.order-btn {
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    background: var(--fire-gradient);
+    color: #FFF;
+    border: none;
+    font-weight: 700;
+}
+
+.order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+}
+
+.order-btn i {
+    background: #FFF;
+    color: var(--primary-color);
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 0.8rem;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--heading-color);
+}
+
+/* Hero Banner Slider */
+.hero-banner {
+    position: relative;
+    overflow: hidden;
+    height: 85vh;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Less dark filter since theme is light, but needed for text contrast */
+    filter: brightness(0.85); 
+}
+
+/* Hero Text needs to be White because it's on image */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: #FFFFFF; 
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+    max-width: 600px;
+    z-index: 2;
+}
+
+.hero-text h1 {
+    color: #FFFFFF;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.hero-text h1 span {
+    color: var(--secondary-color); /* Yellow/Gold pops on dark image */
+}
+
+/* Slider Controls */
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.slider-dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.3);
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #FFF;
+    color: var(--primary-color);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.slider-arrow:hover {
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
+.slider-arrow.prev { left: 30px; }
+.slider-arrow.next { right: 30px; }
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    padding: var(--section-padding);
+}
+
+.section-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--heading-color);
+}
+
+.section-header span {
+    color: var(--primary-color);
+}
+
+.section-header p {
+    color: var(--text-color);
+    max-width: 700px;
+    margin: 20px auto 0;
+    font-size: 1.1rem;
+}
+
+/* Brands Section (Light Mode) */
+.brands-section {
+    background-color: var(--bg-color); /* Cream Background */
+    padding: var(--section-padding);
+}
+
+.brands-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.brand-card {
+    background: var(--card-bg); /* White Card */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    width: 350px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-soft); /* Soft Shadow */
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.brand-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(255, 69, 0, 0.15); /* Orange glow on hover */
+    border-color: var(--primary-color);
+}
+
+.brand-image { overflow: hidden; }
+
+.brand-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.brand-card:hover img {
+    transform: scale(1.1);
+}
+
+.brand-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.brand-info h4 {
+    margin-bottom: 10px;
+    color: var(--heading-color);
+    font-size: 1.5rem;
+}
+
+.brand-info p {
+    color: var(--text-color);
+    margin-bottom: 25px;
+}
+
+.brand-card button {
+    margin: 10px 0;
+    padding: 10px 30px;
+    border-radius: 25px;
+    transition: var(--transition);
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.brand-card button:hover {
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
+/* Franchise Locations - Alternating Background */
+.franchise-locations {
+    padding: var(--section-padding);
+    background-color: var(--section-bg); /* Light Orange Tint */
+}
+
+.location-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 80px 0;
+    gap: 60px;
+}
+
+.location-card.reverse { flex-direction: row-reverse; }
+
+.location-info {
+    flex: 1;
+    max-width: 500px;
+}
+
+.city-tag {
+    color: var(--primary-color);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    display: inline-block;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+}
+
+.location-info h3 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--heading-color);
+}
+
+.location-info h3 span { color: var(--primary-color); }
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.direction-btn {
+    padding: 12px 30px;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
     gap: 10px;
-    justify-content: space-evenly;
-    align-self: center;
-    height: 60px ;
-    width:20px ;
+    transition: var(--transition);
+    background-color: #FFF;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 20px;
 }
-.meils{
-    background-color: rgb(248, 250, 250);
-    height:20px ;
-    width:1090px ;
-    border: 1px solid;
+
+.direction-btn:hover {
+    background-color: var(--primary-color);
+    color: #FFF;
 }
-.jdc{
+
+.direction-btn i {
+    background: transparent;
+    color: inherit;
+}
+
+.location-image {
+    flex: 1;
+    max-width: 600px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    /* Orange shadow offset instead of black */
+    box-shadow: 20px 20px 0px rgba(255, 69, 0, 0.1); 
+    border: 1px solid #FFF;
+}
+
+.location-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.location-image:hover img { transform: scale(1.05); }
+
+/* Express Franchises */
+.express-franchises {
+    padding: var(--section-padding);
+    background-color: var(--bg-color); /* Cream */
+}
+
+.express-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.express-card {
+    background: var(--card-bg); /* White */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-soft);
+}
+
+.express-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255, 69, 0, 0.15);
+}
+
+.express-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.express-card:hover img { transform: scale(1.05); }
+
+.card-body { padding: 25px; }
+
+.card-body h4 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: var(--heading-color);
+}
+
+.card-body h4 span { color: var(--primary-color); }
+
+/* Village Franchise */
+.village-franchise {
+    padding: var(--section-padding);
+    background-color: var(--section-bg); /* Light Orange Tint */
+}
+
+/* Social Feed */
+.social-feed {
+    padding: var(--section-padding);
+    background-color: var(--bg-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: var(--heading-color);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background: var(--fire-gradient);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.feed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.feed-item {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.feed-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.feed-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.feed-item:hover img { transform: scale(1.1); }
+
+/* Footer (Kept Dark Charcoal for good anchor/contrast at bottom) */
+.main-footer {
+    background-color: #222222; /* Dark Charcoal - looks professional */
+    color: #B0B0B0;
+    padding: var(--section-padding);
+    border-top: 4px solid var(--primary-color);
+}
+
+.footer-content {
     display: flex;
-    flex-direction: column;
-    list-style: none;
-    margin: 1px;
-    /* justify-content: left; */
-    height: 100px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.footer-section h4 {
+    color: #FFFFFF;
+    margin-bottom: 25px;
+    font-size: 1.3rem;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
     width: 40px;
-    /* background-color: aquamarine; */
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 0;
+}
+
+.links a {
+    color: #B0B0B0;
+}
+
+.links a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: #333;
+    border-radius: 50%;
+    color: #FFF;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: #333;
+    color: #FFF;
+}
+
+.newsletter-form button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    background: var(--fire-gradient);
+    color: #FFF;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .location-card, .location-card.reverse { flex-direction: column; }
+    .location-info, .location-image { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        background-color: #FFF; /* Mobile nav needs solid background */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .main-nav a { color: #222; }
+    .hero-text h1 { font-size: 2.5rem; }
+    .brand-card, .express-card { width: 100%; }
 }
